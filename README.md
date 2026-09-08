@@ -1,57 +1,90 @@
-# Alien Invasion Game
+# Alien Invasion
 
-Welcome to the Alien Invasion Game! This is a simple, fun, and interactive space shooter game where you control a spaceship to shoot down invading aliens. The game is designed to be easy to pick up and play, with responsive controls for both desktop and mobile devices.
+A space-themed arcade shooter built with HTML, CSS, and vanilla JavaScript. Destroy alien ships, protect your lives, and compete for a place on the global leaderboard.
 
 ## Features
 
-- **Player Movement**: Move your spaceship left and right using keyboard arrows or touch controls.
-- **Shooting**: Fire lasers to destroy aliens, with a cooldown to prevent rapid firing.
-- **Aliens**: Aliens appear randomly and move downwards. The game ends if any alien reaches the bottom of the screen.
-- **Score Tracking**: Your score increases each time you destroy an alien.
-- **Replay Option**: Restart the game after it ends with a simple replay button.
-- **Welcome Screen**: Includes instructions on how to play and a start button to begin the game.
+- Responsive space-themed interface for phones, tablets, and desktop screens
+- Keyboard and touch controls
+- Gradually increasing alien speed and spawn intensity
+- Laser shooting and collision detection
+- Three-heart lives system
+- Current score and persistent high score
+- Named top-10 leaderboard
+- Firebase Firestore support for shared scores across players
+- Local leaderboard fallback when Firebase is unavailable
+- Replay and Home controls after game over
 
-## Getting Started
+## How To Play
 
-### Prerequisites
+1. Enter a callsign on the startup screen.
+2. Select **Start Game**.
+3. Destroy alien ships with your lasers.
+4. Avoid letting aliens reach the bottom of the game area.
+5. You lose one heart for each alien that reaches the bottom.
+6. The game ends when all hearts are gone.
 
-No special prerequisites are needed. The game is built with plain HTML, CSS, and JavaScript, so any modern web browser should work.
+## Controls
 
-### Installation
+### Keyboard
 
-- Navigate to the project directory.
-- Open `index.html` in your web browser: You can simply double-click the `index.html` file to open it in your default web browser.
+- `ArrowLeft`: Move left
+- `ArrowRight`: Move right
+- `Space`: Fire lasers
 
-## Game Controls
+### Smartphone Touch
 
-### Desktop Controls
+- Touch and hold the left half of the screen to move left.
+- Touch and hold the right half of the screen to move right.
+- Touch the bottom quarter of the screen to fire.
+- Release your finger to stop the action.
 
-- **Left Arrow**: Move the spaceship to the left.
-- **Right Arrow**: Move the spaceship to the right.
-- **Spacebar**: Shoot lasers.
+## Firebase Setup
 
-### Mobile Controls
+The project uses Firebase Firestore for the shared leaderboard.
 
-- **Touch Left Half of Screen**: Move the spaceship to the left.
-- **Touch Right Half of Screen**: Move the spaceship to the right.
-- **Touch Bottom Quarter of Screen**: Shoot lasers.
+1. Create or open a Firebase project.
+2. Create a Firestore Database.
+3. Register a Web app in the Firebase project.
+4. Copy the Web app configuration into `firebase-config.js`.
+5. Create Firestore rules that allow leaderboard reads and validated score creation.
 
-## File Structure
+Example configuration shape:
 
-- `index.html`: The main HTML file that structures the game page.
-- `style.css`: Contains the CSS styles for the game, including layout and design.
-- `script.js`: The JavaScript file that handles game logic, player movement, alien spawning, and collision detection.
+```js
+window.firebaseConfig = {
+  apiKey: 'YOUR_API_KEY',
+  authDomain: 'YOUR_PROJECT.firebaseapp.com',
+  projectId: 'YOUR_PROJECT_ID',
+  storageBucket: 'YOUR_PROJECT.firebasestorage.app',
+  messagingSenderId: 'YOUR_SENDER_ID',
+  appId: 'YOUR_APP_ID'
+};
+```
 
-## Troubleshooting
+The game uses a Firestore collection named `leaderboard`. Each score contains a player name, score, and server timestamp.
 
-- **Game Not Starting**: Ensure that your browser supports JavaScript and that you have opened the `index.html` file directly in the browser.
-- **Game Controls Not Working**: Verify that you are using the correct controls for your device (keyboard for desktop, touch for mobile).
+For local development, the game falls back to browser storage when Firebase is not configured or unavailable.
 
-## Contributing
+## Run Locally
 
-Feel free to fork the repository and submit pull requests. Contributions are welcome to improve the game or add new features!
+This is a static web project. Open `index.html` in a browser, or serve the folder with any local static web server.
 
-## Acknowledgments
+For example, with Python installed:
 
-- Inspired by classic space shooter games.
-- Special thanks to the developers of libraries and tools used in this project.
+```powershell
+python -m http.server 8000
+```
+
+Then open `http://localhost:8000`.
+
+## Project Structure
+
+```text
+index.html              Game markup and Firebase SDK loading
+style.css               Responsive space-themed styling
+script.js               Game logic, controls, scoring, and leaderboard
+firebase-config.js      Firebase Web app configuration
+assets/spaceship.svg    Player ship artwork
+assets/alien.svg        Alien ship artwork
+```
