@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Spaceship">
+  <path d="M48 5 64 38 83 78 62 68 48 91 34 68 13 78 32 38Z" fill="#d9f7ff" stroke="#49d9ff" stroke-width="3" stroke-linejoin="round"/>
+  <path d="m48 14 8 31-8 29-8-29Z" fill="#273b68" stroke="#92f1ff" stroke-width="2"/>
+  <path d="M39 47h18l-3 16H42Z" fill="#62efff"/>
+  <path d="m27 47-14 31 21-10M69 47l14 31-21-10" fill="#5d77c9" stroke="#49d9ff" stroke-width="3" stroke-linejoin="round"/>
+  <path d="m34 68-8 16 17-10M62 68l8 16-17-10" fill="#ff477e" stroke="#ff8ba9" stroke-width="2"/>
+</svg>
