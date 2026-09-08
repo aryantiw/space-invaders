@@ -1,73 +1,201 @@
+:root {
+  --space-ink: #050713;
+  --space-blue: #0b1740;
+  --cyan: #64efff;
+  --cyan-soft: #a6f7ff;
+  --lime: #c8ff6b;
+  --coral: #ff668f;
+  --panel: rgba(9, 17, 42, 0.88);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  padding: 0;
-  background-color: black;
+  min-height: 100vh;
   overflow: hidden;
-  font-family: Arial, sans-serif;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--cyan-soft);
+  background-color: var(--space-ink);
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(100, 239, 255, 0.18) 0 1px, transparent 2px),
+    radial-gradient(circle at 80% 70%, rgba(200, 255, 107, 0.14) 0 1px, transparent 2px),
+    radial-gradient(circle at 48% 42%, rgba(255, 255, 255, 0.28) 0 1px, transparent 2px),
+    linear-gradient(145deg, #02030b, #0b1230 55%, #050713);
+  background-size: 170px 170px, 230px 230px, 310px 310px, 100% 100%;
 }
 
 #welcomeScreen {
   position: absolute;
   top: 50%;
   left: 50%;
+  width: min(92vw, 460px);
   transform: translate(-50%, -50%);
+  padding: 36px 34px 32px;
   text-align: center;
-  color: lime;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 20px;
-  border-radius: 10px;
+  background: var(--panel);
+  border: 1px solid rgba(100, 239, 255, 0.65);
+  border-radius: 18px;
+  box-shadow: 0 0 0 6px rgba(100, 239, 255, 0.04), 0 24px 80px rgba(0, 0, 0, 0.55), 0 0 35px rgba(100, 239, 255, 0.12);
   z-index: 1;
 }
 
 #welcomeScreen h1 {
   margin: 0;
-  font-size: 2em;
+  color: var(--cyan-soft);
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgba(100, 239, 255, 0.65);
 }
 
 #welcomeScreen ul {
-  list-style: none;
+  margin: 28px 0;
   padding: 0;
+  color: #b6c4e8;
+  list-style: none;
+  line-height: 1.8;
 }
 
-#welcomeScreen li {
-  margin: 10px 0;
+#welcomeScreen li::before {
+  content: "•";
+  margin-right: 8px;
+  color: var(--lime);
 }
 
-#startButton {
-  padding: 15px 30px;
-  font-size: 1.2em;
-  background-color: lime;
-  color: black;
-  border: none;
-  border-radius: 5px;
+#welcomeScreen label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--cyan);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#playerName {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 12px 14px;
+  color: var(--cyan-soft);
+  font: inherit;
+  background: rgba(2, 6, 20, 0.75);
+  border: 1px solid rgba(100, 239, 255, 0.5);
+  border-radius: 7px;
+  outline: none;
+}
+
+#playerName::placeholder {
+  color: #68779f;
+}
+
+#playerName:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 14px rgba(100, 239, 255, 0.25);
+}
+
+#nameError {
+  min-height: 20px;
+  margin: 0 0 8px;
+  color: var(--coral);
+  font-size: 0.85rem;
+}
+
+#leaderboardSection {
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(100, 239, 255, 0.2);
+}
+
+#leaderboardTitle {
+  margin: 0 0 10px;
+  color: var(--cyan-soft);
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+#leaderboardTable {
+  width: 100%;
+  border-collapse: collapse;
+  color: #b6c4e8;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+#leaderboardTable th {
+  color: var(--cyan);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#leaderboardTable th,
+#leaderboardTable td {
+  padding: 5px 8px;
+}
+
+#leaderboardTable th:last-child,
+#leaderboardTable td:last-child {
+  color: var(--lime);
+  text-align: right;
+}
+
+#leaderboardTable tbody tr:first-child td {
+  color: var(--lime);
+}
+
+#startButton,
+#replayButton,
+#homeButton {
+  padding: 13px 28px;
+  color: #071021;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  background: var(--lime);
+  border: 1px solid #ecffb4;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(200, 255, 107, 0.35);
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
-#startButton:hover {
-  background-color: lightgreen;
+#startButton:hover,
+#replayButton:hover,
+#homeButton:hover {
+  background: #e0ff98;
+  box-shadow: 0 0 28px rgba(200, 255, 107, 0.65);
+  transform: translateY(-2px);
 }
 
 #gameArea {
-  position: relative;
-  width: 60vw; /* Reduced width */
-  height: 85vh; /* Reduced height */
-  background: radial-gradient(circle, black, darkblue);
-  border: 2px solid lime;
-  margin: auto;
-  top: 5%;
-  border-radius: 10px;
-  display: none; /* Hide initially */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(82vw, 860px);
+  height: min(88vh, 820px);
+  background-color: #050a20;
+  background-image:
+    radial-gradient(circle at 50% 80%, rgba(35, 96, 190, 0.18), transparent 42%),
+    radial-gradient(circle at 15% 20%, rgba(100, 239, 255, 0.16) 0 1px, transparent 2px),
+    radial-gradient(circle at 75% 45%, rgba(255, 255, 255, 0.2) 0 1px, transparent 2px);
+  background-size: 100% 100%, 190px 190px, 260px 260px;
+  border: 1px solid rgba(100, 239, 255, 0.85);
+  border-radius: 18px;
+  box-shadow: 0 0 0 5px rgba(100, 239, 255, 0.05), 0 20px 70px rgba(0, 0, 0, 0.7), inset 0 0 45px rgba(39, 82, 180, 0.18);
+  display: none;
+  transform: translate(-50%, -50%);
 }
 
-@media only screen and (max-width: 767px) {
-  #gameArea {
-    width: 100vw; /* Full width for smaller screens */
-    height: 93vh; /* Full height for smaller screens */
-    top: 0;
-    left: 0;
-    border: none; /* Remove border for a cleaner look on mobile */
-    border-radius: 0; /* Remove border radius for full screen */
-  }
+#player,
+.alien {
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: drop-shadow(0 0 8px rgba(100, 239, 255, 0.55));
 }
 
 #player {
@@ -76,33 +204,57 @@ body {
   left: 50%;
   width: 50px;
   height: 50px;
-  background-image: url('assets/spaceship.jpeg');
+  background-image: url('assets/spaceship.svg');
   background-size: cover;
-  transform: translateX(-50%);
-  transition: left 0.1s ease-out; /* Smooth movement */
+  transition: left 0.1s ease-out;
+}
+
+#scoreDisplay,
+#highScoreDisplay,
+#livesDisplay {
+  position: absolute;
+  z-index: 2;
+  text-shadow: 0 0 12px currentColor;
 }
 
 #scoreDisplay {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 16px;
+  left: 20px;
+  color: var(--lime);
   font-size: 24px;
-  color: lime;
+  font-weight: bold;
+}
+
+#highScoreDisplay {
+  top: 48px;
+  left: 20px;
+  color: var(--cyan);
+  font-size: 16px;
+}
+
+#livesDisplay {
+  top: 17px;
+  right: 20px;
+  color: var(--coral);
+  font-size: 24px;
+  letter-spacing: 4px;
 }
 
 .laser {
   position: absolute;
   width: 5px;
-  height: 20px;
-  background-color: lime;
-  box-shadow: 0 0 5px lime; /* Glow effect */
+  height: 22px;
+  background: var(--cyan-soft);
+  border-radius: 4px;
+  box-shadow: 0 0 6px var(--cyan), 0 0 14px var(--cyan);
 }
 
 .alien {
   position: absolute;
+  z-index: 1;
   width: 50px;
   height: 50px;
-  background-image: url('assets/alien.jpeg');
+  background-image: url('assets/alien.svg');
   background-size: cover;
 }
 
@@ -110,17 +262,139 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
+  z-index: 3;
+  display: none;
   transform: translate(-50%, -50%);
-  padding: 15px 30px;
-  font-size: 24px;
-  background-color: lime;
-  color: black;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  display: none; /* Hide initially */
+}
+
+#gameOverStats {
+  position: absolute;
+  top: calc(50% + 58px);
+  left: 50%;
+  z-index: 3;
+  display: none;
+  min-width: 190px;
+  padding: 10px 18px;
+  color: var(--cyan-soft);
+  font-size: 1rem;
+  line-height: 1.7;
+  text-align: center;
+  background: rgba(9, 17, 42, 0.92);
+  border: 1px solid rgba(100, 239, 255, 0.45);
+  border-radius: 8px;
+  box-shadow: 0 0 18px rgba(100, 239, 255, 0.14);
+  transform: translateX(-50%);
+}
+
+#finalScoreDisplay {
+  color: var(--lime);
+  font-weight: bold;
+}
+
+#finalRankDisplay {
+  color: var(--cyan);
 }
 
 #replayButton:hover {
-  background-color: lightgreen;
+  transform: translate(-50%, calc(-50% - 2px));
+}
+
+#homeButton {
+  position: absolute;
+  top: calc(50% + 158px);
+  left: 50%;
+  z-index: 3;
+  display: none;
+  color: var(--cyan-soft);
+  background: rgba(9, 17, 42, 0.92);
+  border-color: rgba(100, 239, 255, 0.65);
+  box-shadow: 0 0 18px rgba(100, 239, 255, 0.2);
+  transform: translateX(-50%);
+}
+
+#homeButton:hover {
+  background: rgba(24, 46, 91, 0.95);
+  box-shadow: 0 0 24px rgba(100, 239, 255, 0.4);
+  transform: translate(-50%, -2px);
+}
+
+@media only screen and (max-width: 767px) {
+  #gameArea {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    border: none;
+    border-radius: 0;
+    transform: none;
+  }
+
+  #welcomeScreen {
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+    padding: 30px 22px 26px;
+  }
+
+  #welcomeScreen h1 {
+    font-size: clamp(1.7rem, 9vw, 2.4rem);
+  }
+
+  #welcomeScreen ul {
+    margin: 20px 0;
+    font-size: 0.9rem;
+  }
+
+  #leaderboardSection {
+    margin-top: 20px;
+  }
+
+  #scoreDisplay {
+    left: 14px;
+    font-size: 21px;
+  }
+
+  #highScoreDisplay {
+    top: 45px;
+    left: 14px;
+    font-size: 14px;
+  }
+
+  #livesDisplay {
+    top: 14px;
+    right: 14px;
+    font-size: 21px;
+  }
+
+  #gameOverStats {
+    top: calc(50% + 52px);
+    min-width: 170px;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+
+  #homeButton {
+    top: calc(50% + 142px);
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+  #gameArea {
+    width: min(88vw, 760px);
+    height: min(84dvh, 760px);
+  }
+
+  #welcomeScreen {
+    width: min(70vw, 500px);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #gameArea {
+    width: min(76vw, 1100px);
+    height: min(86dvh, 900px);
+  }
+
+  #welcomeScreen {
+    width: min(36vw, 520px);
+  }
 }
