@@ -15,16 +15,38 @@
       <li>Tap the screen left and right to control on mobile devices.</li>
       <li>Tap on bottom mid to shoot lasers.</li>
     </ul>
+    <label for="playerName">Enter your callsign</label>
+    <input id="playerName" type="text" maxlength="16" placeholder="e.g. Star Pilot" autocomplete="nickname">
+    <p id="nameError" role="alert"></p>
     <button id="startButton">Start Game</button>
+    <section id="leaderboardSection" aria-labelledby="leaderboardTitle">
+      <h2 id="leaderboardTitle">Top Pilots</h2>
+      <table id="leaderboardTable">
+        <thead>
+          <tr><th scope="col">Rank</th><th scope="col">Name</th><th scope="col">Score</th></tr>
+        </thead>
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+    </section>
   </div>
   
   <div id="gameArea">
     <div id="player"></div>
     <div id="scoreDisplay">Score: 0</div>
+    <div id="highScoreDisplay">High Score: 0</div>
+    <div id="livesDisplay" role="status" aria-label="Lives: 3">&hearts;&hearts;&hearts;</div>
   </div>
   
+  <div id="gameOverStats" aria-live="polite">
+    <div id="finalScoreDisplay">Score: 0</div>
+    <div id="finalRankDisplay">Rank: -</div>
+  </div>
   <button id="replayButton" onclick="replayGame()">Replay</button>
+  <button id="homeButton" onclick="goHome()">Home</button>
   
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
